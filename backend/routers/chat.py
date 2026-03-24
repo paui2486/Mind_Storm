@@ -11,7 +11,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from auth.google_auth import verify_google_token
+from routers.auth import verify_google_token
 from graph.graph_builder import invoke_graph, get_graph, astream_graph
 from langchain_core.messages import HumanMessage, AIMessage
 

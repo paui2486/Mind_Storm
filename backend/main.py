@@ -103,6 +103,11 @@ if frontend_dir.exists():
     @app.get("/{full_path:path}")
     async def serve_spa(request: Request, full_path: str):
         """SPA fallback：所有非 API 路徑都返回 index.html。"""
+        # 防止 API 路徑找不到時回傳 HTML，導致前端 JSON Parse 錯誤
+        if full_path.startswith("api/"):
+            from fastapi import HTTPException
+            raise HTTPException(status_code=404, detail="API route not found")
+            
         # If the requested file exists in dist, serve it
         file_path = frontend_dir / full_path
         if full_path and file_path.exists() and file_path.is_file():

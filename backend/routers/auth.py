@@ -77,38 +77,45 @@ async def google_login(request: GoogleLoginRequest):
 
 async def verify_google_token(
     authorization: Optional[str] = Header(None),
-    dev_uid: Optional[str] = Header(None, alias="X-Dev-UID")
+    x_dev_uid: Optional[str] = Header(None, alias="X-Dev-UID"),
+    dev_uid: Optional[str] = None # Will be populated if sent as query param
 ) -> str:
     """
     FastAPI 依賴項：驗證請求中的身分。
     優先順序：
     1. Authorization: Bearer <id_token> (生產模式)
-    2. X-Dev-UID: <uid> (開發模式)
+    2. X-Dev-UID header (開發模式)
+    3. dev_uid query parameter (開發模式)
     """
-    # ── 開發模式 ──
+    # 1. 檢查 Google id_token (生產模式優先)
+    if settings.google_client_id and authorization and authorization.startswith("Bearer "):
+        token_str = authorization.split(" ")[1]
+        try:
+            from google.oauth2 import id_token
+            from google.auth.transport import requests as google_requests
+
+            id_info = id_token.verify_oauth2_token(
+                token_str,
+                google_requests.Request(),
+                settings.google_client_id,
+            )
+            return id_info["sub"]
+        except Exception as e:
+            logger.error(f"[Auth] Token 驗證失敗: {e}")
+            raise HTTPException(status_code=401, detail="認證無效")
+
+    # 2. 檢查開發模式 UID (當 GOOGLE_CLIENT_ID 為空或強行傳入時)
+    # 優先從 Header 取得，再從 Query 取得
+    effective_uid = x_dev_uid or dev_uid
+
+    if effective_uid:
+        return effective_uid
+
+    # 3. 如果都沒有且為開發模式，回傳預設匿名 ID
     if not settings.google_client_id:
-        if dev_uid:
-            return dev_uid
-        # 如果前端還是在用 query params (舊版)，這裡可以作為 fallback
-        # 但建議統一使用 Header
-        return "test_user_001" 
+        # 不再硬編碼 test_user_001，改為 dev_anonymous 以免混淆
+        return "dev_anonymous"
 
-    # ── 生產模式 ──
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(status_code=401, detail="未提供有效的認證 Header")
-    
-    token_str = authorization.split(" ")[1]
-    try:
-        from google.oauth2 import id_token
-        from google.auth.transport import requests as google_requests
-
-        id_info = id_token.verify_oauth2_token(
-            token_str,
-            google_requests.Request(),
-            settings.google_client_id,
-        )
-        return id_info["sub"]
-    except Exception as e:
-        logger.error(f"[Auth] Token 驗證失敗: {e}")
-        raise HTTPException(status_code=401, detail="認證無效")
+    # 4. 生產模式下若無 token 則攔截
+    raise HTTPException(status_code=401, detail="未提供有效的認證資訊")
 

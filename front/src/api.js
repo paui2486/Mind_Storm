@@ -46,6 +46,8 @@ function authHeaders() {
   const headers = { 'Content-Type': 'application/json' };
   if (auth?.id_token) {
     headers['Authorization'] = `Bearer ${auth.id_token}`;
+  } else if (auth?.dev_uid) {
+    headers['X-Dev-UID'] = auth.dev_uid;
   }
   return headers;
 }
