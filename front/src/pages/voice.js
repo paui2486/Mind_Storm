@@ -1,7 +1,16 @@
 import { streamChat, getCurrentUser } from '../api.js';
 
+function getVoiceSettings() {
+  const defaults = { sttLang: 'zh-TW', rate: 1.0, pitch: 1.0, voiceName: '', autoRead: true };
+  try {
+    const saved = JSON.parse(localStorage.getItem('voice_settings'));
+    return { ...defaults, ...saved };
+  } catch { return { ...defaults }; }
+}
+
 export function renderVoice(appEl, navigate) {
   const user = getCurrentUser();
+  const voiceSettings = getVoiceSettings();
   
   // State variables
   let state = 'idle'; // idle | listening | thinking | speaking
@@ -126,7 +135,7 @@ export function renderVoice(appEl, navigate) {
     btnAction.style.opacity = '0.5';
   } else {
     recognition = new SpeechRecognition();
-    recognition.lang = 'zh-TW';
+    recognition.lang = voiceSettings.sttLang;
     recognition.continuous = false;
     recognition.interimResults = true;
 
@@ -173,7 +182,13 @@ export function renderVoice(appEl, navigate) {
         },
         () => {
           // Finished streaming
-          speak(aiResponseText);
+          if (voiceSettings.autoRead) {
+            speak(aiResponseText);
+          } else {
+            state = 'idle';
+            transcribedText = '';
+            updateUI();
+          }
         },
         (err) => {
           console.error('Chat error:', err);
@@ -199,11 +214,18 @@ export function renderVoice(appEl, navigate) {
     updateUI();
 
     currentUtterance = new SpeechSynthesisUtterance(text);
-    currentUtterance.lang = 'zh-TW';
-    // 試著找到更自然的中文聲音
+    currentUtterance.lang = voiceSettings.sttLang;
+    currentUtterance.rate = voiceSettings.rate;
+    currentUtterance.pitch = voiceSettings.pitch;
+    // Apply user-selected voice or auto-detect
     const voices = synth.getVoices();
-    const zhVoice = voices.find(v => v.lang.includes('zh-TW') || v.lang.includes('zh-HK')) || voices.find(v => v.lang.includes('zh'));
-    if (zhVoice) currentUtterance.voice = zhVoice;
+    if (voiceSettings.voiceName) {
+      const selected = voices.find(v => v.name === voiceSettings.voiceName);
+      if (selected) currentUtterance.voice = selected;
+    } else {
+      const zhVoice = voices.find(v => v.lang.includes('zh-TW') || v.lang.includes('zh-HK')) || voices.find(v => v.lang.includes('zh'));
+      if (zhVoice) currentUtterance.voice = zhVoice;
+    }
 
     currentUtterance.onend = () => {
       state = 'idle';

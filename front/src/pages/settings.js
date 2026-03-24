@@ -92,16 +92,93 @@ export function renderSettings(appEl, navigate) {
           </div>
         </section>
 
-        <!-- 3. Voice Settings (Stub) -->
-        <section class="opacity-60 grayscale-[0.5]">
+        <!-- 3. Voice Settings -->
+        <section>
           <h2 class="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
             <span class="material-symbols-outlined">record_voice_over</span>
-            語音設定 (即將推出)
+            語音設定
           </h2>
-          <div class="bg-surface-container rounded-xl p-8 space-y-8">
-            <div class="flex justify-between items-center text-on-surface-variant italic text-sm">
-              <p>語音互動功能正在開發中，敬請期待 Phase 2.3。</p>
+          <div class="bg-surface-container rounded-xl p-8 space-y-8 border border-outline/10">
+            <!-- STT Language -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <p class="font-semibold text-on-surface">辨識語言</p>
+                <p class="text-sm text-on-surface-variant">語音轉文字的目標語言</p>
+              </div>
+              <select id="voice-stt-lang" class="bg-surface-container-high text-on-surface rounded-xl px-4 py-3 outline-none border-2 border-outline/10 focus:border-primary transition-colors min-w-[180px] font-medium cursor-pointer">
+                <option value="zh-TW">繁體中文</option>
+                <option value="zh-CN">簡體中文</option>
+                <option value="en-US">English</option>
+                <option value="ja-JP">日本語</option>
+              </select>
             </div>
+
+            <div class="h-px bg-outline/10"></div>
+
+            <!-- TTS Rate -->
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <div>
+                  <p class="font-semibold text-on-surface">語速</p>
+                  <p class="text-sm text-on-surface-variant">AI 朗讀的速度</p>
+                </div>
+                <span id="voice-rate-value" class="text-xl font-black text-primary tabular-nums">1.0</span>
+              </div>
+              <input id="voice-rate" type="range" min="0.5" max="2.0" step="0.1" value="1.0"
+                class="w-full h-2 bg-surface-container-high rounded-full appearance-none cursor-pointer accent-primary" />
+              <div class="flex justify-between text-[10px] text-outline mt-1 font-bold"><span>慢 0.5</span><span>快 2.0</span></div>
+            </div>
+
+            <div class="h-px bg-outline/10"></div>
+
+            <!-- TTS Pitch -->
+            <div>
+              <div class="flex justify-between items-center mb-3">
+                <div>
+                  <p class="font-semibold text-on-surface">音調</p>
+                  <p class="text-sm text-on-surface-variant">AI 聲音的高低</p>
+                </div>
+                <span id="voice-pitch-value" class="text-xl font-black text-primary tabular-nums">1.0</span>
+              </div>
+              <input id="voice-pitch" type="range" min="0.5" max="2.0" step="0.1" value="1.0"
+                class="w-full h-2 bg-surface-container-high rounded-full appearance-none cursor-pointer accent-primary" />
+              <div class="flex justify-between text-[10px] text-outline mt-1 font-bold"><span>低 0.5</span><span>高 2.0</span></div>
+            </div>
+
+            <div class="h-px bg-outline/10"></div>
+
+            <!-- TTS Voice Selection -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <p class="font-semibold text-on-surface">TTS 聲音</p>
+                <p class="text-sm text-on-surface-variant">選擇系統可用的語音引擎</p>
+              </div>
+              <select id="voice-tts-voice" class="bg-surface-container-high text-on-surface rounded-xl px-4 py-3 outline-none border-2 border-outline/10 focus:border-primary transition-colors min-w-[180px] font-medium cursor-pointer">
+                <option value="">系統自動偵測</option>
+              </select>
+            </div>
+
+            <div class="h-px bg-outline/10"></div>
+
+            <!-- Auto-Read Toggle -->
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="font-semibold text-on-surface">自動朗讀</p>
+                <p class="text-sm text-on-surface-variant">AI 回覆後自動以語音朗讀</p>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input id="voice-auto-read" type="checkbox" checked class="sr-only peer" />
+                <div class="w-14 h-8 bg-surface-container-highest rounded-full peer peer-checked:bg-primary transition-colors duration-300 after:content-[''] after:absolute after:top-1 after:left-1 after:w-6 after:h-6 after:bg-white after:rounded-full after:transition-all after:duration-300 peer-checked:after:translate-x-6 after:shadow-md"></div>
+              </label>
+            </div>
+
+            <div class="h-px bg-outline/10"></div>
+
+            <!-- Preview Button -->
+            <button id="btn-voice-preview" class="w-full py-4 bg-primary/10 text-primary rounded-xl font-bold text-sm hover:bg-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">play_arrow</span>
+              試聽目前設定
+            </button>
           </div>
         </section>
 
@@ -251,6 +328,106 @@ export function renderSettings(appEl, navigate) {
       alert('清除失敗：' + e.message);
       deleteBtn.textContent = '執行清除';
     }
+  });
+
+  // ── Voice Settings Logic ──
+  const VOICE_SETTINGS_KEY = 'voice_settings';
+  const defaultSettings = { sttLang: 'zh-TW', rate: 1.0, pitch: 1.0, voiceName: '', autoRead: true };
+
+  function loadVoiceSettings() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(VOICE_SETTINGS_KEY));
+      return { ...defaultSettings, ...saved };
+    } catch { return { ...defaultSettings }; }
+  }
+
+  function saveVoiceSettings(s) {
+    localStorage.setItem(VOICE_SETTINGS_KEY, JSON.stringify(s));
+  }
+
+  const vs = loadVoiceSettings();
+  const sttLangSelect = appEl.querySelector('#voice-stt-lang');
+  const rateSlider = appEl.querySelector('#voice-rate');
+  const rateValue = appEl.querySelector('#voice-rate-value');
+  const pitchSlider = appEl.querySelector('#voice-pitch');
+  const pitchValue = appEl.querySelector('#voice-pitch-value');
+  const ttsVoiceSelect = appEl.querySelector('#voice-tts-voice');
+  const autoReadCheckbox = appEl.querySelector('#voice-auto-read');
+  const previewBtn = appEl.querySelector('#btn-voice-preview');
+
+  // Apply saved values to UI
+  sttLangSelect.value = vs.sttLang;
+  rateSlider.value = vs.rate;
+  rateValue.textContent = vs.rate.toFixed(1);
+  pitchSlider.value = vs.pitch;
+  pitchValue.textContent = vs.pitch.toFixed(1);
+  autoReadCheckbox.checked = vs.autoRead;
+
+  // Populate TTS voice list
+  function populateVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    ttsVoiceSelect.innerHTML = '<option value="">系統自動偵測</option>';
+    voices.forEach(v => {
+      const opt = document.createElement('option');
+      opt.value = v.name;
+      opt.textContent = `${v.name} (${v.lang})`;
+      if (v.name === vs.voiceName) opt.selected = true;
+      ttsVoiceSelect.appendChild(opt);
+    });
+  }
+  populateVoices();
+  if (window.speechSynthesis.onvoiceschanged !== undefined) {
+    window.speechSynthesis.onvoiceschanged = populateVoices;
+  }
+
+  // Event handlers — auto-save on change
+  sttLangSelect.addEventListener('change', () => {
+    vs.sttLang = sttLangSelect.value;
+    saveVoiceSettings(vs);
+  });
+
+  rateSlider.addEventListener('input', () => {
+    vs.rate = parseFloat(rateSlider.value);
+    rateValue.textContent = vs.rate.toFixed(1);
+    saveVoiceSettings(vs);
+  });
+
+  pitchSlider.addEventListener('input', () => {
+    vs.pitch = parseFloat(pitchSlider.value);
+    pitchValue.textContent = vs.pitch.toFixed(1);
+    saveVoiceSettings(vs);
+  });
+
+  ttsVoiceSelect.addEventListener('change', () => {
+    vs.voiceName = ttsVoiceSelect.value;
+    saveVoiceSettings(vs);
+  });
+
+  autoReadCheckbox.addEventListener('change', () => {
+    vs.autoRead = autoReadCheckbox.checked;
+    saveVoiceSettings(vs);
+  });
+
+  // Preview button
+  previewBtn.addEventListener('click', () => {
+    const synth = window.speechSynthesis;
+    synth.cancel();
+    const utterance = new SpeechSynthesisUtterance('你好，我是你的心理治療師。這是目前的語音設定預覽。');
+    utterance.lang = vs.sttLang;
+    utterance.rate = vs.rate;
+    utterance.pitch = vs.pitch;
+    if (vs.voiceName) {
+      const selectedVoice = synth.getVoices().find(v => v.name === vs.voiceName);
+      if (selectedVoice) utterance.voice = selectedVoice;
+    }
+    previewBtn.innerHTML = '<span class="material-symbols-outlined text-lg animate-pulse">volume_up</span> 播放中...';
+    utterance.onend = () => {
+      previewBtn.innerHTML = '<span class="material-symbols-outlined text-lg">play_arrow</span> 試聽目前設定';
+    };
+    utterance.onerror = () => {
+      previewBtn.innerHTML = '<span class="material-symbols-outlined text-lg">play_arrow</span> 試聽目前設定';
+    };
+    synth.speak(utterance);
   });
 }
 
