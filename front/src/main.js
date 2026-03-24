@@ -10,6 +10,7 @@ import { renderLogin } from './pages/login.js';
 import { renderChat } from './pages/chat.js';
 import { renderJournal } from './pages/journal.js';
 import { renderSettings } from './pages/settings.js';
+import { renderVoice } from './pages/voice.js';
 
 // ── App container ──
 const appEl = document.getElementById('app');
@@ -49,6 +50,9 @@ function handleRoute() {
       break;
     case 'settings':
       renderSettings(appEl, navigate);
+      break;
+    case 'voice':
+      renderVoice(appEl, navigate);
       break;
     default:
       navigate(isLoggedIn() ? 'chat' : 'login');

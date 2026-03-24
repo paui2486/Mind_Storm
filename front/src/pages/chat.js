@@ -131,6 +131,9 @@ export function renderChat(appEl, navigate) {
         </nav>
 
         <div style="display:flex;align-items:center;gap:16px;">
+          <button id="nav-voice" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high text-on-surface-variant transition-colors group" title="語音模式">
+            <span class="material-symbols-outlined text-2xl group-hover:text-primary transition-colors">mic</span>
+          </button>
           <button id="btn-nav-journal-mobile" class="md:hidden text-on-surface-variant hover:text-primary transition-colors" title="日誌">
             <span class="material-symbols-outlined">auto_stories</span>
           </button>
@@ -230,6 +233,11 @@ export function renderChat(appEl, navigate) {
 
   // ── Theme toggle ──
   renderThemeToggle(appEl.querySelector('#theme-toggle-container'));
+
+  // ── Voice Mode ──
+  appEl.querySelector('#nav-voice').addEventListener('click', () => {
+    navigate('voice');
+  });
 
   // ── Logout ──
   appEl.querySelector('#btn-logout').addEventListener('click', () => {
