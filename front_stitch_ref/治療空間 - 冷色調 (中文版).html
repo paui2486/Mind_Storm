@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sanctuary | Serene Space</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e1e5e2",
+              "on-secondary-container": "#2d4d4a",
+              "surface-bright": "#f9fbfb",
+              "primary-container": "#d6e6e2",
+              "on-error-container": "#6e0a12",
+              "surface-container-low": "#f4f7f6",
+              "secondary-container": "#e0ebe9",
+              "outline-variant": "#c2c9c7",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#323d3b",
+              "primary": "#4a6b66",
+              "secondary": "#5c7d7a",
+              "secondary-fixed": "#e0ebe9",
+              "surface-tint": "#4a6b66",
+              "primary-dim": "#3a5652",
+              "primary-fixed-dim": "#b8cfca",
+              "error-dim": "#67040d",
+              "error-container": "#fa746f",
+              "on-surface-variant": "#5f6b69",
+              "outline": "#7a8482",
+              "on-background": "#2e3332",
+              "secondary-dim": "#4a6b68",
+              "tertiary-fixed": "#c7d8d4",
+              "on-primary-fixed": "#0e1f1c",
+              "inverse-on-surface": "#a1a9a7",
+              "tertiary-container": "#dbe8e5",
+              "on-error": "#ffffff",
+              "surface-container": "#edf2f1",
+              "on-tertiary-container": "#1d2b29",
+              "primary-fixed": "#d6e6e2",
+              "tertiary-fixed-dim": "#b0c1be",
+              "tertiary-dim": "#4b5d5a",
+              "surface-variant": "#e1e5e2",
+              "inverse-surface": "#121414",
+              "error": "#af3d3b",
+              "background": "#f9fbfb",
+              "on-primary-container": "#14211f",
+              "on-surface": "#2e3332",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#0b1513",
+              "surface": "#f9fbfb",
+              "on-secondary-fixed": "#1a2b29",
+              "on-primary-fixed-variant": "#344b47",
+              "on-primary": "#ffffff",
+              "tertiary": "#556e6b",
+              "inverse-primary": "#d6e6e2",
+              "surface-dim": "#dee2e1",
+              "surface-container-high": "#e7eceb",
+              "on-secondary-fixed-variant": "#415a57",
+              "secondary-fixed-dim": "#c4d8d5",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serene-gradient {
+            background: linear-gradient(135deg, #f0f7f6 0%, #e2eceb 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .message-shadow {
+            box-shadow: 0 4px 20px -2px rgba(45, 77, 74, 0.05);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface overflow-hidden">
+<!-- TopAppBar -->
+<header class="bg-surface/90 dark:bg-stone-950/90 full-width top-0 sticky no-border shadow-none backdrop-blur-xl z-50">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed text-3xl" data-icon="spa">spa</span>
+<h1 class="text-2xl font-semibold tracking-tighter text-on-surface dark:text-surface-container-low font-headline">Sanctuary</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-manrope text-lg tracking-tight font-bold text-primary dark:text-primary-fixed" href="#">對話</a>
+<a class="font-manrope text-lg tracking-tight font-medium text-on-surface-variant dark:text-outline-variant hover:bg-surface-container transition-colors duration-300 px-4 py-1 rounded-full" href="#">日誌</a>
+<a class="font-manrope text-lg tracking-tight font-medium text-on-surface-variant dark:text-outline-variant hover:bg-surface-container transition-colors duration-300 px-4 py-1 rounded-full" href="#">設定</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary dark:text-primary-fixed p-2 rounded-full hover:bg-surface-container transition-colors" data-icon="contrast">contrast</button>
+<div class="h-10 w-10 rounded-full bg-secondary-container flex items-center justify-center overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a calm woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVQpccgysXA7zV4ioqfkvCsne30CELc-FnF6uOPza24O4jcQqkxq6pvAitEvzDvBU0PvsaKDHbjqElNyni2IDRtnSu1A-LRqfTwjFflA2Lk3pz-JhVdzoeiTJehM2R3WMCth9aLAU0DLiMiTvwLCBc-5W-hPmpoM4Ehw6tvV8Xkfzg-pkER82w15BRQ1H709TFsxepDAEnVofYimS7dbtbmHkf2GgAvoVHRekd2DRjS6Nn4jyuJBy_CxFuIXDpiUulEhvAQiRzIQ"/>
+</div>
+</div>
+</div>
+</header>
+<main class="relative h-[calc(100vh-88px)] w-full flex flex-col items-center">
+<!-- Background Atmosphere (Cool Serene Green/Grey) -->
+<div class="absolute inset-0 -z-10 bg-surface overflow-hidden">
+<div class="absolute top-[-10%] left-[-5%] w-[60%] h-[70%] rounded-full bg-primary-container/30 blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[50%] h-[60%] rounded-full bg-secondary-container/20 blur-[120px]"></div>
+</div>
+<!-- Chat History Container -->
+<div class="flex-1 w-full max-w-4xl px-6 py-8 overflow-y-auto hide-scrollbar flex flex-col gap-10">
+<!-- Session Start Indicator -->
+<div class="flex justify-center">
+<span class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant text-xs font-semibold tracking-widest uppercase">晚間反思 • 寧靜模式</span>
+</div>
+<!-- Therapist Message -->
+<div class="flex flex-col items-start max-w-[80%] group">
+<div class="flex items-center gap-3 mb-3 ml-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-sm" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+</div>
+<span class="text-xs font-bold font-headline text-secondary tracking-wide uppercase">聖所引導員</span>
+</div>
+<div class="bg-surface-container-high text-on-surface p-6 rounded-xl rounded-bl-sm message-shadow leading-relaxed text-lg">晚安。讓我們花點時間沉浸在這個空間裡。你現在感覺身體狀況如何？有時候，察覺身體哪裡感到緊繃會很有幫助。</div>
+<span class="mt-2 ml-4 text-[10px] text-outline opacity-0 group-hover:opacity-100 transition-opacity">8:42 PM</span>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end self-end max-w-[80%] group">
+<div class="bg-primary text-white p-6 rounded-xl rounded-br-sm shadow-xl shadow-primary/10 leading-relaxed text-lg">今天的工作讓我感到有點吃不消。我的肩膀感覺很緊，很難讓大腦安靜下來。我希望能在大睡一覺前找回一些平靜。</div>
+<span class="mt-2 mr-4 text-[10px] text-outline opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-tighter">已傳送 • 8:44 PM</span>
+</div>
+<!-- Therapist Message -->
+<div class="flex flex-col items-start max-w-[80%] group">
+<div class="flex items-center gap-3 mb-3 ml-2">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-sm" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+</div>
+<span class="text-xs font-bold font-headline text-secondary tracking-wide uppercase">聖所引導員</span>
+</div>
+<div class="bg-surface-container-high text-on-surface p-6 rounded-xl rounded-bl-sm message-shadow leading-relaxed text-lg">壓力堆積在肩膀是很常見的。讓我們試試一個簡單的視覺化：想像一陣涼爽、溫柔的霧氣洗滌你的全身，從頭頂開始，緩緩向下移動到那些緊繃的部位。<br/><br/>這陣霧氣對你來說是什麼顏色的？</div>
+</div>
+<!-- Interactive Pulse Element -->
+<div class="flex justify-center my-4">
+<div class="glass-panel p-8 rounded-xl max-w-md w-full text-center border border-white/20">
+<p class="text-sm text-secondary font-medium mb-4 italic">"呼吸是連結生命與意識的橋樑。"</p>
+<div class="flex justify-center gap-4">
+<button class="px-5 py-2 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold hover:bg-secondary hover:text-white transition-all">深藍</button>
+<button class="px-5 py-2 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold hover:bg-secondary hover:text-white transition-all">柔銀</button>
+<button class="px-5 py-2 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold hover:bg-secondary hover:text-white transition-all">鼠尾草綠</button>
+</div>
+</div>
+</div>
+<!-- Spacer -->
+<div class="h-32"></div>
+</div>
+<!-- Floating Input Area -->
+<div class="fixed bottom-12 left-1/2 -translate-x-1/2 w-full max-w-2xl px-6 z-40">
+<div class="bg-surface-container-lowest/80 backdrop-blur-3xl rounded-full p-2 flex items-center gap-2 shadow-[0_20px_50px_rgba(45,77,74,0.1)] border border-white/40">
+<button class="w-12 h-12 flex items-center justify-center text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-outline-variant font-medium px-2" placeholder="分享你現在的想法..." type="text"/>
+<div class="flex items-center gap-1">
+<button class="w-12 h-12 flex items-center justify-center text-secondary-dim hover:bg-secondary-container rounded-full transition-all">
+<span class="material-symbols-outlined" data-icon="mic" data-weight="fill" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+<button class="h-12 w-12 flex items-center justify-center bg-primary text-white rounded-full hover:scale-105 transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_upward">arrow_upward</span>
+</button>
+</div>
+</div>
+<p class="text-center text-[10px] text-outline-variant mt-4 uppercase tracking-[0.2em]">SANCTUARY 使用 AI 支援您的旅程。如有危機請尋求臨床醫療協助。</p>
+</div>
+<!-- Breathing FAB -->
+<button class="fixed bottom-12 right-12 h-16 w-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shadow-lg animate-pulse hover:scale-110 transition-transform z-40">
+<span class="material-symbols-outlined text-3xl" data-icon="air">air</span>
+</button>
+</main>
+<!-- BottomNavBar -->
+<div class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-center pb-8 bg-surface/80 dark:bg-stone-950/80 backdrop-blur-2xl">
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full px-4 py-2 shadow-[0_10px_40px_rgba(46,51,50,0.06)] flex justify-between">
+<div class="flex flex-col items-center justify-center bg-surface-container text-primary dark:text-primary-fixed rounded-full px-6 py-2 transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-manrope text-[11px] font-semibold uppercase tracking-widest">對話</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-2 hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-manrope text-[11px] font-semibold uppercase tracking-widest">日誌</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-2 hover:text-on-surface">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-[11px] font-semibold uppercase tracking-widest">設定</span>
+</div>
+</div>
+</div>
+</body></html>

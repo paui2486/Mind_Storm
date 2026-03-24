@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#eae8e0",
+              "on-secondary-container": "#385755",
+              "surface-bright": "#fffcf7",
+              "primary-container": "#efab99",
+              "on-error-container": "#6e0a12",
+              "surface-container-low": "#fcf9f3",
+              "secondary-container": "#c7e9e6",
+              "outline-variant": "#bbb9b2",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#53320b",
+              "primary": "#8d5647",
+              "secondary": "#4b6a68",
+              "secondary-fixed": "#c7e9e6",
+              "surface-tint": "#8d5647",
+              "primary-dim": "#7f4b3c",
+              "primary-fixed-dim": "#e09e8c",
+              "error-dim": "#67040d",
+              "error-container": "#fa746f",
+              "on-surface-variant": "#65655e",
+              "outline": "#81817a",
+              "on-background": "#383833",
+              "secondary-dim": "#3f5e5c",
+              "tertiary-fixed": "#d9a777",
+              "on-primary-fixed": "#3e170c",
+              "inverse-on-surface": "#9e9d98",
+              "tertiary-container": "#d9a777",
+              "on-error": "#ffffff",
+              "surface-container": "#f6f3ec",
+              "on-tertiary-container": "#482904",
+              "primary-fixed": "#efab99",
+              "tertiary-fixed-dim": "#ca9a6b",
+              "tertiary-dim": "#765028",
+              "surface-variant": "#eae8e0",
+              "inverse-surface": "#0e0e0c",
+              "error": "#af3d3b",
+              "background": "#fffcf7",
+              "on-primary-container": "#592c1f",
+              "on-surface": "#383833",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#271300",
+              "surface": "#fffcf7",
+              "on-secondary-fixed": "#264543",
+              "on-primary-fixed-variant": "#643527",
+              "on-primary": "#ffffff",
+              "tertiary": "#845c32",
+              "inverse-primary": "#efab99",
+              "surface-dim": "#e4e3da",
+              "surface-container-high": "#f0eee6",
+              "on-secondary-fixed-variant": "#42615f",
+              "secondary-fixed-dim": "#b9dbd8",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .sunlight-glare {
+            background: radial-gradient(circle at 20% 20%, rgba(239, 171, 153, 0.15) 0%, rgba(255, 252, 247, 0) 50%);
+        }
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col overflow-hidden sunlight-glare">
+<!-- TopAppBar -->
+<header class="bg-[#fffcf7] dark:bg-[#1a1a1a] full-width top-0 sticky no-border shadow-none bg-opacity-90 backdrop-blur-xl z-50">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#8d5647] dark:text-[#efab99] text-2xl" data-icon="spa">spa</span>
+<h1 class="font-manrope text-2xl font-semibold tracking-tighter text-[#383833] dark:text-[#fcf9f3]">Sanctuary</h1>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<button class="font-manrope text-[11px] font-semibold uppercase tracking-widest text-[#8d5647] dark:text-[#efab99] font-bold transition-transform scale-95 active:scale-90">Chat</button>
+<button class="font-manrope text-[11px] font-semibold uppercase tracking-widest text-[#65655e] dark:text-[#bbb9b2] hover:bg-[#f6f3ec] dark:hover:bg-stone-800 transition-colors duration-300 px-4 py-2 rounded-full">Journal</button>
+<button class="font-manrope text-[11px] font-semibold uppercase tracking-widest text-[#65655e] dark:text-[#bbb9b2] hover:bg-[#f6f3ec] dark:hover:bg-stone-800 transition-colors duration-300 px-4 py-2 rounded-full">Settings</button>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container rounded-full p-1 shadow-inner">
+<button class="p-2 rounded-full bg-primary text-on-primary shadow-sm flex items-center justify-center transition-all duration-300">
+<span class="material-symbols-outlined text-sm" data-icon="light_mode">light_mode</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+<button class="p-2 text-[#8d5647] dark:text-[#efab99] transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="contrast">contrast</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content: Chat Space -->
+<main class="flex-grow relative flex flex-col items-center justify-start overflow-y-auto px-6 pb-32">
+<!-- Subtle Organic Decoration -->
+<div class="fixed top-40 -left-20 w-64 h-64 bg-primary-container/10 organic-shape blur-3xl -z-10 animate-pulse" style="animation-duration: 8s;"></div>
+<div class="fixed bottom-20 -right-20 w-96 h-96 bg-secondary-container/20 organic-shape blur-3xl -z-10"></div>
+<!-- Subtle Plant Asset -->
+<div class="fixed bottom-12 right-12 opacity-40 pointer-events-none hidden lg:block">
+<span class="material-symbols-outlined text-primary text-[120px]" data-icon="potted_plant">potted_plant</span>
+</div>
+<div class="w-full max-w-3xl mt-12 space-y-12">
+<!-- System/Therapist Greeting -->
+<div class="flex flex-col items-center text-center space-y-4 mb-16">
+<h2 class="font-headline text-5xl font-extrabold tracking-tight text-on-background">Good morning, Julian.</h2>
+<p class="font-body text-on-surface-variant text-lg max-w-md">Take a deep breath. This is your safe space. How are you feeling in your body right now?</p>
+</div>
+<!-- Message History -->
+<div class="space-y-10">
+<!-- User Message -->
+<div class="flex justify-end group">
+<div class="max-w-[80%] bg-primary text-on-primary px-8 py-5 rounded-3xl rounded-tr-sm shadow-xl shadow-primary/10 transition-transform hover:-translate-y-1">
+<p class="leading-relaxed">I've been feeling a bit overwhelmed lately. There's just so much happening at once and it feels like I can't catch my breath.</p>
+</div>
+</div>
+<!-- Therapist Message -->
+<div class="flex justify-start group">
+<div class="max-w-[80%] bg-surface-container-high text-on-surface px-8 py-5 rounded-3xl rounded-tl-sm shadow-sm transition-transform hover:-translate-y-1">
+<p class="leading-relaxed italic text-on-surface-variant mb-2">Reflectively...</p>
+<p class="leading-relaxed">It sounds like you're carrying a heavy load right now. When things feel like they're moving too fast, it's natural to feel that tightness. Let's try to identify just one small thing that feels most urgent today.</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex justify-end group">
+<div class="max-w-[80%] bg-primary text-on-primary px-8 py-5 rounded-3xl rounded-tr-sm shadow-xl shadow-primary/10 transition-transform hover:-translate-y-1">
+<p class="leading-relaxed">I think it's my work deadline. I keep thinking about it even when I'm trying to rest.</p>
+</div>
+</div>
+<!-- Therapist Message -->
+<div class="flex justify-start group">
+<div class="max-w-[80%] bg-surface-container-high text-on-surface px-8 py-5 rounded-3xl rounded-tl-sm shadow-sm transition-transform hover:-translate-y-1">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-primary animate-bounce"></span>
+<span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay: 0.2s"></span>
+<span class="w-2 h-2 rounded-full bg-primary animate-bounce" style="animation-delay: 0.4s"></span>
+</div>
+<p class="leading-relaxed">The "always-on" mind can be exhausting. Let's practice a brief visualization to create a boundary between your workspace and your sanctuary.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Input Area -->
+<div class="fixed bottom-12 left-0 w-full flex justify-center px-6 z-50">
+<div class="w-full max-w-2xl bg-surface-bright/80 backdrop-blur-2xl rounded-full p-2 shadow-[0_20px_50px_rgba(56,56,51,0.1)] flex items-center gap-2 border border-outline-variant/10">
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/60 py-4 px-2" placeholder="Tell me what's on your mind..." type="text"/>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-on-primary shadow-lg shadow-primary/30 hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Hidden on desktop as per responsive pivot, but structured for mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-center pb-8 md:hidden">
+<div class="bg-[#fffcf7]/80 dark:bg-stone-950/80 fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full px-4 py-2 no-border backdrop-blur-2xl shadow-[0_10px_40px_rgba(56,56,51,0.06)] flex justify-between items-center">
+<div class="flex flex-col items-center justify-center bg-[#f6f3ec] dark:bg-stone-900 text-[#8d5647] dark:text-[#efab99] rounded-full px-6 py-2 transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-manrope text-[11px] font-semibold uppercase tracking-widest mt-1">Chat</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#65655e] dark:text-[#bbb9b2] px-4 py-2 hover:text-[#383833] dark:hover:text-[#fcf9f3]">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-manrope text-[11px] font-semibold uppercase tracking-widest mt-1">Journal</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#65655e] dark:text-[#bbb9b2] px-4 py-2 hover:text-[#383833] dark:hover:text-[#fcf9f3]">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-[11px] font-semibold uppercase tracking-widest mt-1">Settings</span>
+</div>
+</div>
+</nav>
+<!-- Crisis FAB (The "Breathing" FAB) -->
+<button class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container shadow-xl animate-[pulse_3s_ease-in-out_infinite] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity">Calm</span>
+</button>
+</body></html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#f2f0e9",
+              "on-secondary-container": "#4a5d5b",
+              "surface-bright": "#fffdfa",
+              "primary-container": "#f8d7ce",
+              "on-error-container": "#6e0a12",
+              "surface-container-low": "#fcfaf5",
+              "secondary-container": "#e0f2f1",
+              "outline-variant": "#dcdbd4",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#53320b",
+              "primary": "#b38b7f",
+              "secondary": "#7a9694",
+              "secondary-fixed": "#e0f2f1",
+              "surface-tint": "#b38b7f",
+              "primary-dim": "#a27a6e",
+              "primary-fixed-dim": "#f8d7ce",
+              "error-dim": "#67040d",
+              "error-container": "#fa746f",
+              "on-surface-variant": "#7c7c75",
+              "outline": "#999992",
+              "on-background": "#4a4a44",
+              "secondary-dim": "#628280",
+              "tertiary-fixed": "#ebd4bc",
+              "on-primary-fixed": "#4a2c24",
+              "inverse-on-surface": "#b7b6af",
+              "tertiary-container": "#ebd4bc",
+              "on-error": "#ffffff",
+              "surface-container": "#f9f7f0",
+              "on-tertiary-container": "#482904",
+              "primary-fixed": "#f8d7ce",
+              "tertiary-fixed-dim": "#dbc0a6",
+              "tertiary-dim": "#9c7c5a",
+              "surface-variant": "#f2f0e9",
+              "inverse-surface": "#1e1e1c",
+              "error": "#af3d3b",
+              "background": "#fffdfa",
+              "on-primary-container": "#4a2c24",
+              "on-surface": "#4a4a44",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#271300",
+              "surface": "#fffdfa",
+              "on-secondary-fixed": "#324d4b",
+              "on-primary-fixed-variant": "#7a544a",
+              "on-primary": "#ffffff",
+              "tertiary": "#a6825c",
+              "inverse-primary": "#f8d7ce",
+              "surface-dim": "#edece4",
+              "surface-container-high": "#f4f2ea",
+              "on-secondary-fixed-variant": "#547472",
+              "secondary-fixed-dim": "#d2ece9",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .sunlight-glare {
+            background: radial-gradient(circle at 20% 20%, rgba(248, 215, 206, 0.1) 0%, rgba(255, 253, 250, 0) 60%);
+        }
+        .organic-shape {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col overflow-hidden sunlight-glare">
+<!-- TopAppBar -->
+<header class="bg-surface/80 dark:bg-[#1a1a1a] full-width top-0 sticky no-border shadow-none backdrop-blur-xl z-50">
+<div class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim text-2xl" data-icon="spa">spa</span>
+<h1 class="font-headline text-2xl font-semibold tracking-tighter text-on-surface dark:text-surface-container-low">Sanctuary</h1>
+</div>
+<nav class="hidden md:flex items-center space-x-8">
+<button class="font-headline text-[11px] font-bold uppercase tracking-widest text-primary dark:text-primary-fixed-dim transition-transform scale-95 active:scale-90">對話</button>
+<button class="font-headline text-[11px] font-semibold uppercase tracking-widest text-on-surface-variant dark:text-outline-variant hover:bg-surface-container transition-colors duration-300 px-4 py-2 rounded-full">日誌</button>
+<button class="font-headline text-[11px] font-semibold uppercase tracking-widest text-on-surface-variant dark:text-outline-variant hover:bg-surface-container transition-colors duration-300 px-4 py-2 rounded-full">設定</button>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-surface-container rounded-full p-1 shadow-inner">
+<button class="p-2 rounded-full bg-primary text-on-primary shadow-sm flex items-center justify-center transition-all duration-300">
+<span class="material-symbols-outlined text-sm" data-icon="light_mode">light_mode</span>
+</button>
+<button class="p-2 rounded-full text-on-surface-variant hover:bg-surface-container-highest transition-all duration-300 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+<button class="p-2 text-primary dark:text-primary-fixed-dim transition-transform active:scale-90">
+<span class="material-symbols-outlined" data-icon="contrast">contrast</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content: Chat Space -->
+<main class="flex-grow relative flex flex-col items-center justify-start overflow-y-auto px-6 pb-32">
+<!-- Subtle Organic Decoration -->
+<div class="fixed top-40 -left-20 w-64 h-64 bg-primary-container/15 organic-shape blur-3xl -z-10 animate-pulse" style="animation-duration: 10s;"></div>
+<div class="fixed bottom-20 -right-20 w-96 h-96 bg-secondary-container/25 organic-shape blur-3xl -z-10"></div>
+<!-- Subtle Plant Asset -->
+<div class="fixed bottom-12 right-12 opacity-30 pointer-events-none hidden lg:block">
+<span class="material-symbols-outlined text-primary/40 text-[120px]" data-icon="potted_plant">potted_plant</span>
+</div>
+<div class="w-full max-w-3xl mt-12 space-y-12">
+<!-- System/Therapist Greeting -->
+<div class="flex flex-col items-center text-center space-y-4 mb-16">
+<h2 class="font-headline text-5xl font-extrabold tracking-tight text-on-background">早安，Julian。</h2>
+<p class="font-body text-on-surface-variant text-lg max-w-md">深呼吸。這裡是你的安全空間。你現在感覺身體狀況如何？</p>
+</div>
+<!-- Message History -->
+<div class="space-y-10">
+<!-- User Message -->
+<div class="flex justify-end group">
+<div class="max-w-[80%] bg-primary/90 text-on-primary px-8 py-5 rounded-3xl rounded-tr-sm shadow-lg shadow-primary/5 transition-transform hover:-translate-y-0.5">
+<p class="leading-relaxed">最近覺得有點不知所措。事情發生得太快，我覺得快喘不過氣了。</p>
+</div>
+</div>
+<!-- Therapist Message -->
+<div class="flex justify-start group">
+<div class="max-w-[80%] bg-surface-container-high text-on-surface px-8 py-5 rounded-3xl rounded-tl-sm shadow-sm border border-outline-variant/20 transition-transform hover:-translate-y-0.5">
+<p class="leading-relaxed italic text-on-surface-variant/80 mb-2">深入地思考...</p>
+<p class="leading-relaxed">聽起來你現在承擔了很大的壓力。當事情進展太快時，感到緊繃是很正常的。讓我們試著找出今天最讓你感到焦慮的一件事。</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex justify-end group">
+<div class="max-w-[80%] bg-primary/90 text-on-primary px-8 py-5 rounded-3xl rounded-tr-sm shadow-lg shadow-primary/5 transition-transform hover:-translate-y-0.5">
+<p class="leading-relaxed">我想是我的工作截止日期。即使在休息時，我也一直在想著它。</p>
+</div>
+</div>
+<!-- Therapist Message -->
+<div class="flex justify-start group">
+<div class="max-w-[80%] bg-surface-container-high text-on-surface px-8 py-5 rounded-3xl rounded-tl-sm shadow-sm border border-outline-variant/20 transition-transform hover:-translate-y-0.5">
+<div class="flex items-center gap-2 mb-3">
+<span class="w-2 h-2 rounded-full bg-primary/40 animate-bounce"></span>
+<span class="w-2 h-2 rounded-full bg-primary/40 animate-bounce" style="animation-delay: 0.2s"></span>
+<span class="w-2 h-2 rounded-full bg-primary/40 animate-bounce" style="animation-delay: 0.4s"></span>
+</div>
+<p class="leading-relaxed">「不停轉」的大腦確實讓人疲憊。讓我們練習一個簡短的視覺化引導，在你的工作空間和你的聖所之間建立一道界線。</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Input Area -->
+<div class="fixed bottom-12 left-0 w-full flex justify-center px-6 z-50">
+<div class="w-full max-w-2xl bg-surface-bright/90 backdrop-blur-2xl rounded-full p-2 shadow-[0_15px_40px_rgba(74,74,68,0.08)] flex items-center gap-2 border border-outline-variant/20">
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined" data-icon="mic">mic</span>
+</button>
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface placeholder:text-on-surface-variant/40 py-4 px-2" placeholder="告訴我你在想什麼..." type="text"/>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-primary text-on-primary shadow-lg shadow-primary/20 hover:brightness-105 transition-all">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+<!-- BottomNavBar (Hidden on desktop as per responsive pivot, but structured for mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-center pb-8 md:hidden">
+<div class="bg-surface-bright/90 dark:bg-stone-950/80 fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-md rounded-full px-4 py-2 backdrop-blur-2xl shadow-[0_10px_30px_rgba(74,74,68,0.05)] border border-outline-variant/20 flex justify-between items-center">
+<div class="flex flex-col items-center justify-center bg-surface-container-highest dark:bg-stone-900 text-primary dark:text-primary-fixed-dim rounded-full px-6 py-2 transition-all duration-500">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-headline text-[10px] font-bold uppercase tracking-widest mt-1">對話</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-2 hover:text-on-surface dark:hover:text-surface-container-low">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-headline text-[10px] font-semibold uppercase tracking-widest mt-1">日誌</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-2 hover:text-on-surface dark:hover:text-surface-container-low">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-headline text-[10px] font-semibold uppercase tracking-widest mt-1">設定</span>
+</div>
+</div>
+</nav>
+<!-- Crisis FAB (The "Breathing" FAB) -->
+<button class="fixed right-8 top-1/2 -translate-y-1/2 hidden xl:flex flex-col items-center gap-2 group">
+<div class="w-14 h-14 rounded-full bg-tertiary-container/80 flex items-center justify-center text-on-tertiary-container shadow-xl shadow-tertiary-container/10 animate-[pulse_4s_ease-in-out_infinite] hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="self_improvement">self_improvement</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant/70 opacity-0 group-hover:opacity-100 transition-opacity">平靜</span>
+</button>
+</body></html>

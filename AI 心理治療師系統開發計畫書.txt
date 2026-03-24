@@ -1,0 +1,94 @@
+# 📄 AI 心理治療師系統開發計畫書 (Handover for antigravity)
+
+## 1. 專案概述
+
+本專案旨在開發一個具備「長期記憶」與「高隱私隔離」的 AI 心理治療師 Agent。系統需結合認知行為療法（CBT）、接納與承諾療法（ACT）及阿德勒心理學，提供非評判的心理支持。
+核心技術挑戰為**多使用者記憶絕對隔離**，以及**長文本對話的上下文壓縮與精準檢索**。
+
+## 2. 系統架構選型
+
+* **後端框架**：FastAPI (負責 API 路由與依賴注入驗證)。
+* **身分驗證**：Google OAuth2 (前端取得 `id_token`，後端驗證並提取唯一 `UID` 作為記憶分流的 Key)。
+* **Agent 編排**：LangGraph (使用 StateGraph 管理對話狀態與流程路由)。
+* **大語言模型**：Gemini 3.1 Flash (啟用 Thinking Mode，確保高邏輯與同理心推演)。*（系統級限制：嚴禁替換為任何中國公司之開源或閉源模型）*
+* **雙軌記憶庫 (統一技術棧)**：PostgreSQL。
+* 短期記憶持久化：使用 LangGraph `PostgresSaver` Checkpointer。
+* 長期記憶檢索：使用 `pgvector` 擴充套件儲存對話摘要與向量 (Embedding)。
+
+
+
+## 3. 核心處理流程 (LangGraph State Machine)
+
+對話狀態圖包含以下核心節點，由 `antigravity` 負責將其具體實作：
+
+1. **Retrieve Node (檢索節點)**：
+* 接收使用者的最新訊息，轉換為 Embedding。
+* 透過 Hybrid Search (向量相似度 + Metadata 過濾) 進入 `pgvector` 撈取歷史記憶。
+
+
+2. **Chat Node (對話節點)**：
+* 將「系統提示詞 (人設)」、「短期對話紀錄 (Messages)」、「滾動式摘要 (Summary)」與「檢索到的長期記憶 (Retrieved Context)」進行 Prompt 組裝。
+* 呼叫 Gemini 3.1 Flash 生成回應。**嚴格遵守：每次回應結尾最多只能拋出 1 個問句。**
+
+
+3. **Conditional Edge (條件路由)**：
+* 判斷 `Messages` 長度。當對話超過啟發式閥值（例如：10 輪對話或 4000 Tokens），觸發壓縮。未超過則結束當今回合。
+
+
+4. **Summarize Node (壓縮與儲存節點)**：
+* 呼叫 LLM 總結過去 10 輪對話，更新滾動式摘要。
+* **關鍵任務**：要求 LLM 同時以 JSON 格式提取 Metadata（`topics`, `intensity` 分數）。
+* 將舊對話片段與提取出的 Metadata 寫入 `pgvector`。
+* 清空 LangGraph State 中過舊的 `Messages` 以釋放 Context Window。
+
+
+
+## 4. Vector DB 儲存結構與 Metadata 規範
+
+為了讓檢索具備心理治療的「脈絡感」，`pgvector` 的 Schema 需包含以下欄位，這也是混合檢索 (Hybrid Search) 的過濾條件：
+
+* `user_id` (VARCHAR): **[絕對必要]** Google UID，用於資料隔離。
+* `content` (TEXT): 壓縮後的語意片段或洞見。
+* `embedding` (VECTOR): 文本向量。
+* `topics` (TEXT[]): 主題標籤，如 `["職涯焦慮", "完美主義"]`。
+* `intensity` (INTEGER): 情緒強度分數 (1-10)。
+* `chunk_type` (VARCHAR): 標示為 `summary` 或 `core_belief` 等。
+
+## 5. 開發環境配置建議
+
+為了確保開發環境的單純與一致性，本地端資料庫直接以單一容器運行即可，避免繁雜的配置。
+請在終端機執行以下指令啟動具備向量功能的 PostgreSQL：
+
+```bash
+# 啟動 pgvector 資料庫服務
+docker run --name pgvector-db -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d pgvector/pgvector:pg16
+
+# 檢查 log 確認運行狀態
+docker logs -f pgvector-db
+
+```
+---
+
+## 🎯 交接給 antigravity 的待辦事項 (Action Items)
+
+哈囉 antigravity，接手後請優先執行以下任務，並確保所有程式碼執行時都要有清晰的 Log 輸出（如 `logger.info()`）：
+
+1. **建立 FastAPI 基礎專案**：
+* 實作 `/api/chat` 端點。
+* 完成 Google OAuth Token 在後端的驗證邏輯，並確保能正確解析出 `UID`。
+* *Log 需求範例*：`logger.info(f"[Auth] 成功解析 UID: {uid}")`
+
+
+2. **初始化 PostgreSQL 與 pgvector**：
+* 連線至本地 Docker 的 Postgres 服務。
+* 執行 SQL 建立 `therapy_memories` 資料表與 HNSW 索引。
+
+
+3. **實作 LangGraph 核心邏輯**：
+* 按照計畫書第 3 點，實作 `StateGraph` 的三個 Node 與條件分支。
+* 綁定 `PostgresSaver` 作為 Checkpointer，並將 API 傳入的 `UID` 設為 `thread_id`。
+* *Log 需求範例*：`logger.info(f"[Graph] 執行 ChatNode, 目前 Token 數估算: {len(state['messages'])}")`
+
+
+4. **優化 Summarize Node 的 Prompt (進階)**：
+* 使用 Gemini 3.1 Flash 的 Structured Output (JSON Schema) 功能，要求模型在總結對話時，除了輸出文字，必須同時吐出 `{"topics": [...], "intensity": 8}` 等 Metadata，以便存入資料庫。

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@300;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#ca9a6b",
+              "on-primary-container": "#592c1f",
+              "on-tertiary-container": "#482904",
+              "on-surface": "#383833",
+              "on-primary-fixed-variant": "#643527",
+              "tertiary-fixed": "#d9a777",
+              "surface-container-low": "#fcf9f3",
+              "surface": "#fffcf7",
+              "secondary-container": "#c7e9e6",
+              "surface-dim": "#e4e3da",
+              "surface-variant": "#eae8e0",
+              "on-tertiary": "#ffffff",
+              "surface-tint": "#8d5647",
+              "on-tertiary-fixed-variant": "#53320b",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bbb9b2",
+              "primary": "#8d5647",
+              "tertiary": "#845c32",
+              "primary-fixed-dim": "#e09e8c",
+              "surface-container-highest": "#eae8e0",
+              "inverse-primary": "#efab99",
+              "secondary-fixed-dim": "#b9dbd8",
+              "on-error-container": "#6e0a12",
+              "on-secondary-fixed-variant": "#42615f",
+              "error": "#af3d3b",
+              "primary-dim": "#7f4b3c",
+              "secondary-dim": "#3f5e5c",
+              "on-surface-variant": "#65655e",
+              "outline": "#81817a",
+              "error-dim": "#67040d",
+              "surface-bright": "#fffcf7",
+              "error-container": "#fa746f",
+              "on-background": "#383833",
+              "surface-container-high": "#f0eee6",
+              "primary-container": "#efab99",
+              "inverse-surface": "#0e0e0c",
+              "on-primary-fixed": "#3e170c",
+              "tertiary-container": "#d9a777",
+              "on-tertiary-fixed": "#271300",
+              "on-secondary": "#ffffff",
+              "tertiary-dim": "#765028",
+              "secondary-fixed": "#c7e9e6",
+              "on-error": "#ffffff",
+              "primary-fixed": "#efab99",
+              "inverse-on-surface": "#9e9d98",
+              "surface-container-lowest": "#ffffff",
+              "background": "#fffcf7",
+              "on-secondary-fixed": "#264543",
+              "surface-container": "#f6f3ec",
+              "secondary": "#4b6a68",
+              "on-secondary-container": "#385755"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-[#fffcf7] dark:bg-stone-950 sticky top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-semibold text-[#8d5647] dark:text-[#efab99] tracking-wide font-['Manrope']">Sanctuary</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#65655e] dark:text-stone-400 font-['Manrope'] tracking-tight font-light hover:text-[#8d5647] transition-colors duration-300" href="#">Chat</a>
+<a class="text-[#8d5647] dark:text-[#efab99] border-b-2 border-[#8d5647] font-['Manrope'] tracking-tight font-light transition-colors duration-300" href="#">Journal</a>
+<a class="text-[#65655e] dark:text-stone-400 font-['Manrope'] tracking-tight font-light hover:text-[#8d5647] transition-colors duration-300" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-[#8d5647] dark:text-[#efab99]">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 pt-12">
+<!-- Header Section -->
+<div class="mb-12">
+<h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-primary mb-4">我的日誌</h1>
+<p class="text-on-surface-variant max-w-2xl leading-relaxed text-lg">回顧你的情感旅程，發現內心的寧靜與律動。</p>
+</div>
+<!-- Mood Trend Visual (Bento-style Glassmorphism) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16">
+<div class="lg:col-span-2 bg-surface-container rounded-xl p-8 relative overflow-hidden">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h3 class="text-sm font-semibold text-primary uppercase tracking-widest mb-1">本週情緒趨勢</h3>
+<p class="text-2xl font-bold text-on-surface">漸趨平穩</p>
+</div>
+<div class="text-right">
+<span class="text-xs text-on-surface-variant">最後更新: 今日 09:30</span>
+</div>
+</div>
+<!-- Simple SVG Graph Representation -->
+<div class="w-full h-48 flex items-end justify-between gap-2 px-2">
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-full h-24 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-full h-1/2"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">一</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-full h-32 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-full h-2/3"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">二</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-full h-40 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-full h-3/4"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">三</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-full h-28 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-full h-1/3"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">四</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-full h-36 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-full h-4/5"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant">五</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full bg-primary-container/20 rounded-full h-44 relative overflow-hidden">
+<div class="absolute bottom-0 w-full bg-primary-container rounded-full h-5/6"></div>
+</div>
+<span class="text-[10px] text-on-surface-variant font-bold text-primary">六</span>
+</div>
+<div class="flex-1 flex flex-col items-center gap-2 group opacity-50">
+<div class="w-full bg-primary-container/20 rounded-full h-32"></div>
+<span class="text-[10px] text-on-surface-variant">日</span>
+</div>
+</div>
+<!-- Abstract Grainy Overlay -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+</div>
+<!-- Stats Highlight -->
+<div class="bg-secondary-container/50 rounded-xl p-8 flex flex-col justify-between border border-secondary-container/30">
+<div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-4" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="text-xl font-bold text-on-secondary-container mb-2">心情洞察</h3>
+<p class="text-sm text-on-secondary-container/80 leading-relaxed">
+                        本週您最常提到的關鍵字是「平靜」與「閱讀」。早晨的冥想似乎對您的焦慮有所緩解。
+                    </p>
+</div>
+<div class="mt-6">
+<button class="w-full py-4 bg-secondary text-on-secondary rounded-xl font-semibold text-sm hover:opacity-90 transition-opacity">查看完整分析報告</button>
+</div>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="flex flex-col md:flex-row gap-4 mb-10 items-center">
+<div class="relative w-full md:flex-1">
+<span class="material-symbols-outlined absolute left-5 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-full py-4 pl-14 pr-6 text-on-surface focus:ring-2 focus:ring-primary-container placeholder:text-outline/60" placeholder="搜尋對話、情緒或關鍵字..." type="text"/>
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<button class="bg-primary text-on-primary px-6 py-4 rounded-full text-sm font-medium whitespace-nowrap">全部紀錄</button>
+<button class="bg-surface-container-high text-on-surface-variant px-6 py-4 rounded-full text-sm font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">平靜</button>
+<button class="bg-surface-container-high text-on-surface-variant px-6 py-4 rounded-full text-sm font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">焦慮</button>
+<button class="bg-surface-container-high text-on-surface-variant px-6 py-4 rounded-full text-sm font-medium whitespace-nowrap hover:bg-surface-container-highest transition-colors">喜悅</button>
+<button class="bg-surface-container-high text-on-surface-variant px-4 py-4 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="tune">tune</span>
+</button>
+</div>
+</section>
+<!-- Journal List (Asymmetric Grid) -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Journal Card 1 -->
+<div class="group bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[320px]">
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-sm font-medium text-outline">2023.11.24</span>
+<div class="bg-secondary-container px-3 py-1 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-xs font-semibold text-on-secondary-container">平靜</span>
+</div>
+</div>
+<h4 class="text-2xl font-bold text-on-surface mb-4 leading-snug">今天與自我的深度對話，感覺負擔輕了許多。</h4>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#早晨冥想</span>
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#工作壓力</span>
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#咖啡廳</span>
+</div>
+</div>
+<div class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+                    閱讀全文 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Journal Card 2 -->
+<div class="group bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[320px]">
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-sm font-medium text-outline">2023.11.22</span>
+<div class="bg-error-container/20 px-3 py-1 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="text-xs font-semibold text-on-error-container">輕微焦慮</span>
+</div>
+</div>
+<h4 class="text-2xl font-bold text-on-surface mb-4 leading-snug">面對突如其來的專案截止日期，呼吸變得有些急促。</h4>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#專案管理</span>
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#截止日</span>
+</div>
+</div>
+<div class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+                    閱讀全文 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Journal Card 3 (Featured) -->
+<div class="group bg-primary-container p-8 rounded-xl hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[320px] md:col-span-2 lg:col-span-1">
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-sm font-medium text-on-primary-container/70">2023.11.20</span>
+<div class="bg-white/40 px-3 py-1 rounded-full flex items-center gap-2 backdrop-blur-md">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-xs font-semibold text-on-primary-container">充滿動力</span>
+</div>
+</div>
+<h4 class="text-2xl font-bold text-on-primary-container mb-4 leading-snug">終於完成了長久以來的目標，這種成就感前所未有。</h4>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs px-3 py-1 bg-white/30 rounded-full text-on-primary-container">#突破</span>
+<span class="text-xs px-3 py-1 bg-white/30 rounded-full text-on-primary-container">#馬拉松</span>
+<span class="text-xs px-3 py-1 bg-white/30 rounded-full text-on-primary-container">#成功</span>
+</div>
+</div>
+<div class="flex items-center text-on-primary-container font-bold text-sm group-hover:gap-3 gap-2 transition-all">
+                    閱讀全文 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+<!-- Journal Card 4 -->
+<div class="group bg-surface-container-low p-8 rounded-xl hover:bg-surface-container-high transition-all duration-500 cursor-pointer flex flex-col justify-between min-h-[320px]">
+<div>
+<div class="flex justify-between items-start mb-6">
+<span class="text-sm font-medium text-outline">2023.11.18</span>
+<div class="bg-tertiary-container/30 px-3 py-1 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-xs font-semibold text-on-tertiary-container">反思</span>
+</div>
+</div>
+<h4 class="text-2xl font-bold text-on-surface mb-4 leading-snug">在雨後的公園散步，思考著未來的種種可能。</h4>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#雨天</span>
+<span class="text-xs px-3 py-1 bg-surface-variant rounded-full text-on-surface-variant">#散步</span>
+</div>
+</div>
+<div class="flex items-center text-primary font-semibold text-sm group-hover:gap-3 gap-2 transition-all">
+                    閱讀全文 <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#fffcf7]/80 dark:bg-stone-950/80 backdrop-blur-xl md:hidden shadow-[0_-10px_40px_rgba(56,56,51,0.06)] rounded-t-[3rem]">
+<a class="flex flex-col items-center justify-center text-[#65655e] dark:text-stone-400 px-6 py-2 hover:scale-105 transition-transform duration-400" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Manrope'] text-xs font-medium">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#f6f3ec] dark:bg-stone-800 text-[#8d5647] dark:text-[#efab99] rounded-full px-6 py-2 hover:scale-105 transition-transform duration-400" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="auto_stories" style="font-variation-settings: 'FILL' 1;">auto_stories</span>
+<span class="font-['Manrope'] text-xs font-medium">Journal</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65655e] dark:text-stone-400 px-6 py-2 hover:scale-105 transition-transform duration-400" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-['Manrope'] text-xs font-medium">Settings</span>
+</a>
+</nav>
+</body></html>

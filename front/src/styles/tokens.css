@@ -1,0 +1,187 @@
+/*
+ * tokens.css — Sanctuary Design System Tokens
+ * Extracted from Stitch "Therapy Space" project.
+ * Two themes: warm (default) and cool. Toggle via [data-theme="cool"] on <html>.
+ */
+
+/* ─── Google Fonts ─────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@300;500;600;700;800&display=swap');
+
+/* ─── Global Reset & Base ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
+
+::selection {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+/* ─── Warm Theme (Default) ─────────────────────────────────────────────────── */
+:root, [data-theme="warm"] {
+  --primary: #8d5647;
+  --primary-dim: #7f4b3c;
+  --primary-container: #efab99;
+  --on-primary: #ffffff;
+  --on-primary-container: #592c1f;
+
+  --secondary: #4b6a68;
+  --secondary-dim: #3f5e5c;
+  --secondary-container: #c7e9e6;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #385755;
+
+  --tertiary: #845c32;
+  --tertiary-dim: #765028;
+  --tertiary-container: #d9a777;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #482904;
+
+  --error: #af3d3b;
+  --error-container: #fa746f;
+  --on-error: #ffffff;
+  --on-error-container: #6e0a12;
+
+  --surface: #fffcf7;
+  --surface-bright: #fffcf7;
+  --surface-dim: #e4e3da;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #fcf9f3;
+  --surface-container: #f6f3ec;
+  --surface-container-high: #f0eee6;
+  --surface-container-highest: #eae8e0;
+  --surface-variant: #eae8e0;
+
+  --on-surface: #383833;
+  --on-surface-variant: #65655e;
+  --on-background: #383833;
+
+  --outline: #81817a;
+  --outline-variant: #bbb9b2;
+
+  --inverse-surface: #0e0e0c;
+  --inverse-on-surface: #9e9d98;
+  --inverse-primary: #efab99;
+}
+
+/* ─── Cool Theme ───────────────────────────────────────────────────────────── */
+[data-theme="cool"] {
+  --primary: #5b7a78;
+  --primary-dim: #4d6c6a;
+  --primary-container: #a8d4d0;
+  --on-primary: #ffffff;
+  --on-primary-container: #1e3b39;
+
+  --secondary: #6b7b8d;
+  --secondary-dim: #5a6a7c;
+  --secondary-container: #c8d6e5;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #3a4a5c;
+
+  --tertiary: #7a6b5a;
+  --tertiary-dim: #6c5e4d;
+  --tertiary-container: #c7b8a5;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #3e3024;
+
+  --error: #af3d3b;
+  --error-container: #fa746f;
+  --on-error: #ffffff;
+  --on-error-container: #6e0a12;
+
+  --surface: #f5f8f7;
+  --surface-bright: #f5f8f7;
+  --surface-dim: #d6dddb;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #eef3f2;
+  --surface-container: #e8edec;
+  --surface-container-high: #e2e8e6;
+  --surface-container-highest: #dce2e0;
+  --surface-variant: #dce2e0;
+
+  --on-surface: #2c3232;
+  --on-surface-variant: #545e5c;
+  --on-background: #2c3232;
+
+  --outline: #6e7876;
+  --outline-variant: #a8b2b0;
+
+  --inverse-surface: #0e1212;
+  --inverse-on-surface: #8e9896;
+  --inverse-primary: #a8d4d0;
+}
+
+/* ─── Utility Classes ──────────────────────────────────────────────────────── */
+body {
+  background-color: var(--surface);
+  color: var(--on-surface);
+  min-height: 100vh;
+}
+
+/* Typography */
+.font-headline { font-family: 'Manrope', sans-serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* Organic background shape */
+.organic-shape {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* Sunlight glare overlay */
+.sunlight-glare {
+  background: radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--primary-container) 10%, transparent) 0%, transparent 60%);
+}
+
+/* Smooth transitions for theme toggle */
+*, *::before, *::after {
+  transition: background-color 0.4s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--outline); }
+
+/* Link reset */
+a { color: inherit; text-decoration: none; }
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
+.animate-fade-in-up { animation: fadeInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }

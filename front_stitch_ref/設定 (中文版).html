@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@300;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#ca9a6b",
+              "on-primary-container": "#592c1f",
+              "on-tertiary-container": "#482904",
+              "on-surface": "#383833",
+              "on-primary-fixed-variant": "#643527",
+              "tertiary-fixed": "#d9a777",
+              "surface-container-low": "#fcf9f3",
+              "surface": "#fffcf7",
+              "secondary-container": "#c7e9e6",
+              "surface-dim": "#e4e3da",
+              "surface-variant": "#eae8e0",
+              "on-tertiary": "#ffffff",
+              "surface-tint": "#8d5647",
+              "on-tertiary-fixed-variant": "#53320b",
+              "on-primary": "#ffffff",
+              "outline-variant": "#bbb9b2",
+              "primary": "#8d5647",
+              "tertiary": "#845c32",
+              "primary-fixed-dim": "#e09e8c",
+              "surface-container-highest": "#eae8e0",
+              "inverse-primary": "#efab99",
+              "secondary-fixed-dim": "#b9dbd8",
+              "on-error-container": "#6e0a12",
+              "on-secondary-fixed-variant": "#42615f",
+              "error": "#af3d3b",
+              "primary-dim": "#7f4b3c",
+              "secondary-dim": "#3f5e5c",
+              "on-surface-variant": "#65655e",
+              "outline": "#81817a",
+              "error-dim": "#67040d",
+              "surface-bright": "#fffcf7",
+              "error-container": "#fa746f",
+              "on-background": "#383833",
+              "surface-container-high": "#f0eee6",
+              "primary-container": "#efab99",
+              "inverse-surface": "#0e0e0c",
+              "on-primary-fixed": "#3e170c",
+              "tertiary-container": "#d9a777",
+              "on-tertiary-fixed": "#271300",
+              "on-secondary": "#ffffff",
+              "tertiary-dim": "#765028",
+              "secondary-fixed": "#c7e9e6",
+              "on-error": "#ffffff",
+              "primary-fixed": "#efab99",
+              "inverse-on-surface": "#9e9d98",
+              "surface-container-lowest": "#ffffff",
+              "background": "#fffcf7",
+              "on-secondary-fixed": "#264543",
+              "surface-container": "#f6f3ec",
+              "secondary": "#4b6a68",
+              "on-secondary-container": "#385755"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-[#fffcf7] dark:bg-stone-950 sticky top-0 z-50 transition-colors duration-400">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-semibold text-[#8d5647] dark:text-[#efab99] tracking-wide font-['Manrope']">Sanctuary</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-[#65655e] dark:text-stone-400 hover:text-[#8d5647] transition-colors duration-300 font-['Manrope'] tracking-tight font-light" href="#">Chat</a>
+<a class="text-[#65655e] dark:text-stone-400 hover:text-[#8d5647] transition-colors duration-300 font-['Manrope'] tracking-tight font-light" href="#">Journal</a>
+<a class="text-[#8d5647] dark:text-[#efab99] border-b-2 border-[#8d5647] font-['Manrope'] tracking-tight font-light" href="#">Settings</a>
+</nav>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[#8d5647] dark:text-[#efab99] text-2xl" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+<!-- Tonal shift separation -->
+<div class="h-px w-full bg-[#f6f3ec] dark:bg-stone-900"></div>
+</header>
+<main class="max-w-4xl mx-auto px-6 pt-12">
+<h1 class="text-5xl font-extrabold text-on-surface tracking-tight mb-12">Settings</h1>
+<div class="space-y-16">
+<!-- 1. Profile Section -->
+<section>
+<h2 class="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                    個人資料
+                </h2>
+<div class="bg-surface-container rounded-xl p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="relative group">
+<img alt="Profile" class="w-32 h-32 rounded-full object-cover shadow-lg border-4 border-surface" data-alt="Modern minimalist portrait for user profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCchbogdgoTgxo-_Ht1vTvtn_YLB13vgXAYKO1US9XLk3S_tQd1cS8i-DTO8ZnIpFTQbotSSQaa2L-HDOJCfhfkccyckVf0uUpj3grCIsmLs_4ikG792_z_pmlymqRvDleMH1Cw6Q9rGWp2ud0ktVjmjPnXPphpRypPp-Munf4ClzZ1b3ZugjurSYwJ9SvqCIPHNUa5aTNxRTR_Mae_R6D7GEX8vA21KANTfAlwfirICs2pMCY95YP5s75t8fs-GF9_gsls7tTr9w"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+<span class="material-symbols-outlined text-white" data-icon="edit">edit</span>
+</div>
+</div>
+<div class="flex-grow text-center md:text-left">
+<h3 class="text-2xl font-bold text-on-surface mb-1">Elena Vance</h3>
+<p class="text-on-surface-variant flex items-center justify-center md:justify-start gap-2 mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="mail">mail</span>
+                            elena.vance@gmail.com
+                        </p>
+<div class="inline-flex items-center gap-2 bg-surface-container-high px-4 py-2 rounded-full text-sm text-secondary font-medium">
+<img alt="Google" class="w-4 h-4" data-alt="Google G logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYGe2MhedGTMBR0nQQbYCAv82A_cFc74Rot9VSqubztrW90mUDXMA2I-aH2CKy18fXU0IeGPgeF1zj_2iDTwF9yZqWZibRxPjcO2SoedV_aoUQAaF0ooyFDBO3jOOjzOBCq0ZXemtJOEhUb33hnEticPuX8pEcEVDbI3Ki-b8HriOKkORMcZxnmKBpATSlve40W7_wpU324LdoSu7Tfql35OVplbqlbr0az7wLtvrPnlqqTTtJyZoI5SlvBr3cC3LDZ8JTkgpAig"/>
+                            Google 帳號已連結
+                        </div>
+</div>
+</div>
+</section>
+<!-- 2. Interface Preferences -->
+<section>
+<h2 class="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+                    介面偏好
+                </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-surface-container p-6 rounded-xl flex items-center justify-between border-2 border-primary">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined" data-icon="light_mode">light_mode</span>
+</div>
+<div>
+<p class="font-semibold">暖色模式</p>
+<p class="text-sm text-on-surface-variant">柔和大地色系</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="bg-surface-container-low p-6 rounded-xl flex items-center justify-between hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</div>
+<div>
+<p class="font-semibold">冷色模式</p>
+<p class="text-sm text-on-surface-variant">沉靜森林與午夜</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Voice Settings -->
+<section>
+<h2 class="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="record_voice_over">record_voice_over</span>
+                    語音設定
+                </h2>
+<div class="bg-surface-container rounded-xl p-8 space-y-8">
+<div>
+<div class="flex justify-between mb-4">
+<label class="font-medium">語音角色</label>
+<span class="text-sm text-primary font-semibold">曉月 (柔和)</span>
+</div>
+<div class="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full text-sm whitespace-nowrap">曉月</button>
+<button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full text-sm whitespace-nowrap">清泉</button>
+<button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full text-sm whitespace-nowrap">晨曦</button>
+<button class="bg-surface-container-highest text-on-surface-variant px-6 py-2 rounded-full text-sm whitespace-nowrap">微風</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="space-y-4">
+<div class="flex justify-between">
+<label class="text-sm font-medium">音量</label>
+<span class="text-xs text-on-surface-variant">80%</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range" value="80"/>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between">
+<label class="text-sm font-medium">語速</label>
+<span class="text-xs text-on-surface-variant">1.0x</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest rounded-lg appearance-none cursor-pointer accent-primary" type="range" value="50"/>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Privacy & Security -->
+<section>
+<h2 class="text-xl font-semibold text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+                    隱私與安全
+                </h2>
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<button class="w-full flex items-center justify-between p-6 hover:bg-surface-container transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="download">download</span>
+<span class="font-medium">匯出我的資料</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+<div class="h-px bg-surface-container mx-6"></div>
+<button class="w-full flex items-center justify-between p-6 hover:bg-error-container/10 transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-error" data-icon="delete_forever">delete_forever</span>
+<span class="font-medium text-error">刪除帳號</span>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Visible on Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#fffcf7]/80 dark:bg-stone-950/80 backdrop-blur-xl md:hidden shadow-[0_-10px_40px_rgba(56,56,51,0.06)] rounded-t-[3rem]">
+<a class="flex flex-col items-center justify-center text-[#65655e] dark:text-stone-400 px-6 py-2 hover:scale-105 transition-transform duration-400" href="#">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+<span class="font-['Manrope'] text-xs font-medium mt-1">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#65655e] dark:text-stone-400 px-6 py-2 hover:scale-105 transition-transform duration-400" href="#">
+<span class="material-symbols-outlined" data-icon="auto_stories">auto_stories</span>
+<span class="font-['Manrope'] text-xs font-medium mt-1">Journal</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#f6f3ec] dark:bg-stone-800 text-[#8d5647] dark:text-[#efab99] rounded-full px-6 py-2 hover:scale-105 transition-transform duration-400" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-['Manrope'] text-xs font-medium mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

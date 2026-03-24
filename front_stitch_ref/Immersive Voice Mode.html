@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#eae8e0",
+              "on-secondary-container": "#385755",
+              "surface-bright": "#fffcf7",
+              "primary-container": "#efab99",
+              "on-error-container": "#6e0a12",
+              "surface-container-low": "#fcf9f3",
+              "secondary-container": "#c7e9e6",
+              "outline-variant": "#bbb9b2",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed-variant": "#53320b",
+              "primary": "#8d5647",
+              "secondary": "#4b6a68",
+              "secondary-fixed": "#c7e9e6",
+              "surface-tint": "#8d5647",
+              "primary-dim": "#7f4b3c",
+              "primary-fixed-dim": "#e09e8c",
+              "error-dim": "#67040d",
+              "error-container": "#fa746f",
+              "on-surface-variant": "#65655e",
+              "outline": "#81817a",
+              "on-background": "#383833",
+              "secondary-dim": "#3f5e5c",
+              "tertiary-fixed": "#d9a777",
+              "on-primary-fixed": "#3e170c",
+              "inverse-on-surface": "#9e9d98",
+              "tertiary-container": "#d9a777",
+              "on-error": "#ffffff",
+              "surface-container": "#f6f3ec",
+              "on-tertiary-container": "#482904",
+              "primary-fixed": "#efab99",
+              "tertiary-fixed-dim": "#ca9a6b",
+              "tertiary-dim": "#765028",
+              "surface-variant": "#eae8e0",
+              "inverse-surface": "#0e0e0c",
+              "error": "#af3d3b",
+              "background": "#fffcf7",
+              "on-primary-container": "#592c1f",
+              "on-surface": "#383833",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-fixed": "#271300",
+              "surface": "#fffcf7",
+              "on-secondary-fixed": "#264543",
+              "on-primary-fixed-variant": "#643527",
+              "on-primary": "#ffffff",
+              "tertiary": "#845c32",
+              "inverse-primary": "#efab99",
+              "surface-dim": "#e4e3da",
+              "surface-container-high": "#f0eee6",
+              "on-secondary-fixed-variant": "#42615f",
+              "secondary-fixed-dim": "#b9dbd8",
+              "surface-container-lowest": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes pulse-organic {
+            0%, 100% { transform: scale(1) translate(0, 0); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { transform: scale(1.1) translate(2%, -2%); border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%; }
+        }
+        .organic-blob {
+            animation: pulse-organic 8s ease-in-out infinite;
+        }
+        .blur-layer {
+            backdrop-filter: blur(80px);
+        }
+    </style>
+</head>
+<body class="bg-inverse-surface font-body overflow-hidden h-screen w-screen flex flex-col">
+<!-- TopAppBar: Immersive Variation -->
+<!-- Suppression logic: Nav components are present but minimal to prioritize the "Canvas" flow -->
+<header class="flex justify-between items-center w-full px-8 py-6 max-w-screen-2xl mx-auto top-0 sticky no-border shadow-none bg-opacity-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#efab99]" data-icon="spa">spa</span>
+<span class="font-manrope text-lg tracking-tight font-medium text-[#fcf9f3]">Sanctuary</span>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-[#fcf9f3] transition-all duration-300 group">
+<span class="font-manrope text-sm font-semibold tracking-wide">Exit Voice Mode</span>
+<span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="close">close</span>
+</button>
+</header>
+<!-- Main Content: Immersive Voice Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center relative px-6">
+<!-- Background Ambient Light -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-tertiary/10 rounded-full blur-[120px]"></div>
+</div>
+<!-- Central Voice Core -->
+<div class="relative flex items-center justify-center w-full max-w-lg aspect-square">
+<!-- Outermost Wave -->
+<div class="absolute w-[95%] h-[95%] bg-primary-container/5 rounded-full organic-blob" style="animation-delay: -2s;"></div>
+<!-- Middle Wave -->
+<div class="absolute w-[75%] h-[75%] bg-primary-container/10 rounded-full organic-blob" style="animation-delay: -1s;"></div>
+<!-- Inner Glow -->
+<div class="absolute w-[50%] h-[50%] bg-gradient-to-tr from-primary to-primary-container rounded-full organic-blob shadow-[0_0_80px_rgba(239,169,153,0.3)]"></div>
+<!-- Listening Pulse Icon -->
+<div class="relative z-10 flex flex-col items-center gap-4">
+<span class="material-symbols-outlined text-6xl text-white/90" data-icon="graphic_eq">graphic_eq</span>
+<p class="font-manrope text-primary-container/60 text-xs uppercase tracking-[0.4em] font-bold">Listening</p>
+</div>
+</div>
+<!-- Interim Transcription Feedback -->
+<div class="mt-12 max-w-md w-full text-center">
+<p class="text-[#bbb9b2] text-xl font-light leading-relaxed animate-pulse">
+                "I've been feeling a bit overwhelmed lately with the new project..."
+            </p>
+</div>
+</main>
+<!-- Bottom Recording Indicator (Simplified Shell) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex flex-col items-center pb-12 gap-6">
+<!-- Dynamic Volume Indicator -->
+<div class="flex items-end gap-1.5 h-8">
+<div class="w-1.5 bg-primary-container/20 rounded-full h-2"></div>
+<div class="w-1.5 bg-primary-container/40 rounded-full h-4"></div>
+<div class="w-1.5 bg-primary-container/60 rounded-full h-6"></div>
+<div class="w-1.5 bg-primary-container rounded-full h-8"></div>
+<div class="w-1.5 bg-primary-container/60 rounded-full h-6"></div>
+<div class="w-1.5 bg-primary-container/40 rounded-full h-4"></div>
+<div class="w-1.5 bg-primary-container/20 rounded-full h-2"></div>
+</div>
+<!-- The "Breathing" Voice Interaction Control -->
+<div class="relative group">
+<!-- Pulsing Halo -->
+<div class="absolute inset-0 bg-primary-container/20 rounded-full blur-xl scale-150 animate-pulse"></div>
+<button class="relative w-20 h-20 rounded-full bg-gradient-to-br from-primary to-primary-container flex items-center justify-center shadow-2xl hover:scale-105 transition-transform duration-500 group-active:scale-95">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="mic" data-weight="fill" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+<!-- Quick Access Meditation Control (Contextual FAB Suppression Applied, this is a Voice Control) -->
+<p class="font-manrope text-[10px] text-[#65655e] uppercase tracking-[0.3em] font-semibold">Tap to Pause Sanctuary</p>
+</footer>
+<!-- Background Image Layer (Abstract Gradient) -->
+<div class="fixed inset-0 -z-10 bg-inverse-surface">
+<div class="absolute inset-0 opacity-20 mix-blend-soft-light bg-[radial-gradient(circle_at_50%_50%,_rgba(141,86,71,0.2)_0%,_transparent_70%)]"></div>
+<img class="w-full h-full object-cover opacity-10" data-alt="Soft abstract organic dark brown texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB8wW7DW4oTqLHbhtLAqm8xEyGpkOWRq6GPvUXeCH9JR0Erm0f6uucPldI5dGLP5Tk9HBpcenTrg-rj8318SNl3h435mLQ3yRrhACtSf223ZFCSmFxmVwTV-vUYf90VFdsFTMhFAgFtynCw3K9_nTdf6KlmLBptjmkjQDNCtT5oypwHhqwYtkO1yFlZGntzT3qGbyTwlbvTFX16bKdEmxomzwbxtAF2sMLOqKIzLer3c179pZYgjiQwYUH34IVHCNW1NuiPOBhRQ"/>
+</div>
+<!-- Hidden Nav Shell (Required by Design System Hierarchy but suppressed visually for immersion) -->
+<nav aria-hidden="true" class="hidden">
+<ul>
+<li>Chat</li>
+<li>Journal</li>
+<li>Settings</li>
+</ul>
+</nav>
+</body></html>
