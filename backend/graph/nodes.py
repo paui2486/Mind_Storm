@@ -14,6 +14,7 @@ from langchain_core.messages import HumanMessage, SystemMessage, RemoveMessage
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 
 from config import get_settings
+from db.database import get_pool
 from graph.state import TherapyState
 from prompts.therapist_persona import build_therapist_system_prompt
 from prompts.summarize_prompt import (
@@ -71,15 +72,16 @@ async def retrieve_node(state: TherapyState) -> dict:
         logger.info(f"[Graph] Embedding 生成完成 (維度: {len(query_embedding)})")
 
         # pgvector Hybrid Search: WHERE user_id + 向量相似度排序
-        async with await psycopg.AsyncConnection.connect(settings.database_url) as conn:
+        pool = await get_pool()
+        async with pool.connection() as conn:
             async with conn.cursor() as cur:
                 await cur.execute(
                     """
                     SELECT content, topics, intensity,
-                           1 - (embedding <=> %s::vector) AS similarity
+                           1 - (embedding <=> %s::halfvec) AS similarity
                     FROM therapy_memories
                     WHERE user_id = %s
-                    ORDER BY embedding <=> %s::vector
+                    ORDER BY embedding <=> %s::halfvec
                     LIMIT 3
                     """,
                     (query_embedding, user_id, query_embedding),
@@ -231,13 +233,14 @@ async def _save_to_long_term_memory(
         embedding_model = _get_embedding_model()
         embedding = await embedding_model.aembed_query(content)
 
-        async with await psycopg.AsyncConnection.connect(settings.database_url) as conn:
+        pool = await get_pool()
+        async with pool.connection() as conn:
             async with conn.cursor() as cur:
                 await cur.execute(
                     """
                     INSERT INTO therapy_memories
                         (user_id, content, embedding, topics, intensity, chunk_type)
-                    VALUES (%s, %s, %s::vector, %s, %s, %s)
+                    VALUES (%s, %s, %s::halfvec, %s, %s, %s)
                     """,
                     (user_id, content, embedding, topics, intensity, chunk_type),
                 )

@@ -10,7 +10,7 @@
 * **後端框架**：FastAPI (負責 API 路由與依賴注入驗證)。
 * **身分驗證**：Google OAuth2 (前端取得 `id_token`，後端驗證並提取唯一 `UID` 作為記憶分流的 Key)。
 * **Agent 編排**：LangGraph (使用 StateGraph 管理對話狀態與流程路由)。
-* **大語言模型**：Gemini 3.1 Flash (啟用 Thinking Mode，確保高邏輯與同理心推演)。*（系統級限制：嚴禁替換為任何中國公司之開源或閉源模型）*
+* **大語言模型**：Gemini 3.8 Flash (啟用 Thinking Mode，確保高邏輯與同理心推演)。*（系統級限制：嚴禁替換為任何中國公司之開源或閉源模型）*
 * **雙軌記憶庫 (統一技術棧)**：PostgreSQL。
 * 短期記憶持久化：使用 LangGraph `PostgresSaver` Checkpointer。
 * 長期記憶檢索：使用 `pgvector` 擴充套件儲存對話摘要與向量 (Embedding)。
@@ -28,7 +28,7 @@
 
 2. **Chat Node (對話節點)**：
 * 將「系統提示詞 (人設)」、「短期對話紀錄 (Messages)」、「滾動式摘要 (Summary)」與「檢索到的長期記憶 (Retrieved Context)」進行 Prompt 組裝。
-* 呼叫 Gemini 3.1 Flash 生成回應。**嚴格遵守：每次回應結尾最多只能拋出 1 個問句。**
+* 呼叫 Gemini 3.8 Flash 生成回應。**嚴格遵守：每次回應結尾最多只能拋出 1 個問句。**
 
 
 3. **Conditional Edge (條件路由)**：
@@ -49,7 +49,7 @@
 
 * `user_id` (VARCHAR): **[絕對必要]** Google UID，用於資料隔離。
 * `content` (TEXT): 壓縮後的語意片段或洞見。
-* `embedding` (VECTOR): 文本向量。
+* `embedding` (HALFVEC(3072)): 文本向量 (採用 halfvec 突破 pgvector 2,000 維索引限制，支援至 4,000 維與 HNSW)。
 * `topics` (TEXT[]): 主題標籤，如 `["職涯焦慮", "完美主義"]`。
 * `intensity` (INTEGER): 情緒強度分數 (1-10)。
 * `chunk_type` (VARCHAR): 標示為 `summary` 或 `core_belief` 等。
@@ -81,7 +81,7 @@ docker logs -f pgvector-db
 
 2. **初始化 PostgreSQL 與 pgvector**：
 * 連線至本地 Docker 的 Postgres 服務。
-* 執行 SQL 建立 `therapy_memories` 資料表與 HNSW 索引。
+* 執行 SQL 建立 `therapy_memories` 資料表與 HNSW 索引 (使用 `halfvec_cosine_ops` 索引運算子)。
 
 
 3. **實作 LangGraph 核心邏輯**：
@@ -91,4 +91,4 @@ docker logs -f pgvector-db
 
 
 4. **優化 Summarize Node 的 Prompt (進階)**：
-* 使用 Gemini 3.1 Flash 的 Structured Output (JSON Schema) 功能，要求模型在總結對話時，除了輸出文字，必須同時吐出 `{"topics": [...], "intensity": 8}` 等 Metadata，以便存入資料庫。
+* 使用 Gemini 3.8 Flash 的 Structured Output (JSON Schema) 功能，要求模型在總結對話時，除了輸出文字，必須同時吐出 `{"topics": [...], "intensity": 8}` 等 Metadata，以便存入資料庫。

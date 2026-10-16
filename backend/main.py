@@ -19,6 +19,7 @@ from fastapi.responses import FileResponse
 
 from config import get_settings
 from db.database import get_pool, close_pool
+from db.init_db import init_schema
 from graph.graph_builder import init_graph, close_graph
 from routers.chat import router as chat_router
 from routers.auth import router as auth_router
@@ -47,8 +48,9 @@ async def lifespan(app: FastAPI):
     logger.info("🧠 AI 心理治療師系統 - 啟動中...")
     logger.info("=" * 60)
 
-    # 1. 初始化 DB 連線池
+    # 1. 初始化 DB 連線池與 Schema (含 halfvec HNSW 索引)
     await get_pool()
+    await init_schema(use_pool=True)
 
     # 2. 初始化 LangGraph (建立 checkpointer 資料表)
     await init_graph()

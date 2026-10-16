@@ -1,8 +1,11 @@
 """
 config.py - 全域設定，透過 pydantic-settings 讀取 .env
 """
-from pydantic_settings import BaseSettings
+from pathlib import Path
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
+
+_BACKEND_DIR = Path(__file__).resolve().parent
 
 
 class Settings(BaseSettings):
@@ -19,15 +22,17 @@ class Settings(BaseSettings):
     summarize_threshold: int = 10
 
     # Gemini 模型
-    llm_model: str = "gemini-3.1-flash-lite-preview"
+    llm_model: str = "gemini-3.8-flash"
     embedding_model: str = "models/gemini-embedding-001"
 
     # Frontend static files (Vite build output)
-    frontend_dir: str = "../front/dist"
+    frontend_dir: str = str(_BACKEND_DIR.parent / "front" / "dist")
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+    model_config = SettingsConfigDict(
+        env_file=(str(_BACKEND_DIR / ".env"), ".env"),
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
 
 @lru_cache()

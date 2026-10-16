@@ -6,6 +6,7 @@ from datetime import datetime
 from pydantic import BaseModel
 
 from config import get_settings
+from db.database import get_pool
 from routers.auth import verify_google_token
 
 router = APIRouter()
@@ -25,7 +26,8 @@ async def get_journals(uid: str = Depends(verify_google_token)):
     獲取目前使用者的日誌紀錄 (長期記憶)
     """
     try:
-        async with await psycopg.AsyncConnection.connect(settings.database_url) as conn:
+        pool = await get_pool()
+        async with pool.connection() as conn:
             async with conn.cursor(row_factory=dict_row) as cur:
                 await cur.execute(
                     """

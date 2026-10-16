@@ -21,21 +21,30 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
-async def init_schema():
+async def init_schema(use_pool: bool = False):
     settings = get_settings()
     schema_path = os.path.join(os.path.dirname(__file__), "schema.sql")
-
-    logger.info(f"[DB] 連線至: {settings.database_url}")
 
     with open(schema_path, "r", encoding="utf-8") as f:
         schema_sql = f.read()
 
-    async with await psycopg.AsyncConnection.connect(settings.database_url) as conn:
-        async with conn.cursor() as cur:
-            logger.info("[DB] 執行 Schema 初始化...")
-            await cur.execute(schema_sql)
-            await conn.commit()
-            logger.info("[DB] ✅ Schema 初始化完成！therapy_memories 資料表與索引已就緒")
+    if use_pool:
+        from db.database import get_pool
+        pool = await get_pool()
+        async with pool.connection() as conn:
+            async with conn.cursor() as cur:
+                logger.info("[DB] 執行 Schema 與 HNSW 索引檢查/初始化...")
+                await cur.execute(schema_sql)
+                await conn.commit()
+                logger.info("[DB] ✅ Schema 與 HNSW 索引就緒")
+    else:
+        logger.info(f"[DB] 連線至: {settings.database_url}")
+        async with await psycopg.AsyncConnection.connect(settings.database_url) as conn:
+            async with conn.cursor() as cur:
+                logger.info("[DB] 執行 Schema 初始化...")
+                await cur.execute(schema_sql)
+                await conn.commit()
+                logger.info("[DB] ✅ Schema 初始化完成！therapy_memories 資料表與索引已就緒")
 
 
 if __name__ == "__main__":

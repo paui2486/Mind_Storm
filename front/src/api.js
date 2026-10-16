@@ -226,8 +226,9 @@ export async function deleteUserMemory() {
   const user = getCurrentUser();
   if (!user) throw new Error("未登入");
 
-  const resp = await fetch(`${API_BASE}/settings/memory?user_id=${encodeURIComponent(user.dev_uid)}`, {
-    method: 'DELETE'
+  const resp = await fetch(`${API_BASE}/settings/memory${authParams()}`, {
+    method: 'DELETE',
+    headers: authHeaders(),
   });
 
   if (!resp.ok) {
